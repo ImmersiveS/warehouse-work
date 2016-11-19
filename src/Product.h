@@ -4,10 +4,28 @@
 
 #ifndef WAREHOUSE_WORK_PRODUCT_H
 #define WAREHOUSE_WORK_PRODUCT_H
-
+#include <iostream>
+#include <ctime>
+#include <chrono>
 
 class Product {
+public:
+    const std::string &getName() const;
 
+    void setName(const std::string &name);
+
+    float getPrice() const;
+
+    void setPrice(float price);
+
+    std::string getDateOfReceiving() const;
+
+    void setDateOfReceiving();
+
+private:
+    std::string name;
+    float price;
+    std::string dateOfReceiving;
 };
 
 
