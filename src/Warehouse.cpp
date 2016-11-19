@@ -16,15 +16,15 @@ void Warehouse::setProducts(const std::vector<Product> &products) {
     Warehouse::products = products;
 }
 
-//Warehouse::Warehouse(const std::string &name, const std::vector<Product> &products) : name(name), products(products)
-//{
-//    this->name = name;
-//    this->products = products;
-//}
-//
-//Warehouse::Warehouse() { this->name = "unnamed"; }
-//
-//Warehouse::Warehouse(const std::string &name) : name(name) { this->name = name; }
+Warehouse::Warehouse(const std::string &name, const std::vector<Product> &products) : name(name), products(products)
+{
+    this->name = name;
+    this->products = products;
+}
+
+Warehouse::Warehouse() { this->name = "unnamed"; }
+
+Warehouse::Warehouse(const std::string &name) : name(name) { this->name = name; }
 
 void Warehouse::Accounting::sendRequest(const Supplier& supplier, const Request& request) {
 

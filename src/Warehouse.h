@@ -29,11 +29,11 @@ public:
         std::vector<Request> requests;
         std::vector<Contract> contracts;
     };
-//    Warehouse(const std::string &name, const std::vector<Product> &products);
-//
-//    Warehouse(const std::string &name);
-//
-//    Warehouse();
+    Warehouse(const std::string &name, const std::vector<Product> &products);
+
+    Warehouse(const std::string &name);
+
+    Warehouse();
 
     Accounting accounting;
 

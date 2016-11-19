@@ -13,6 +13,10 @@
 class Warehouse;
 class Supplier {
 public:
+    Supplier(const std::string &name, const std::vector<Product> &products);
+
+    Supplier();
+
     const std::string &getName() const;
 
     void setName(const std::string &name);

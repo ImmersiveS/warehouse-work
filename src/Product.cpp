@@ -29,3 +29,8 @@ void Product::setDateOfReceiving() {
     time_t dateOfReceiving = std::chrono::system_clock::to_time_t(dateOfPaying + std::chrono::hours(72));
     Product::dateOfReceiving = asctime(localtime(&dateOfReceiving));
 }
+
+Product::Product(const std::string &name, float price)
+        : name(name), price(price), dateOfReceiving("undefined") {}
+
+Product::Product() : name(0), price(0), dateOfReceiving("undefined") {}

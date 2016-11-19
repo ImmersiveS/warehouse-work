@@ -31,3 +31,7 @@ void Supplier::setRequests(const std::vector<Product> &requests) {
 void Supplier::sendProducts(const Warehouse &warehouse, std::vector<Product> proucts) {
 
 }
+
+Supplier::Supplier(const std::string &name, const std::vector<Product> &products) : name(name), products(products) {}
+
+Supplier::Supplier() : name("undefined") {}

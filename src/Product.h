@@ -10,6 +10,10 @@
 
 class Product {
 public:
+    Product(const std::string &name, float price);
+
+    Product();
+
     const std::string &getName() const;
 
     void setName(const std::string &name);
