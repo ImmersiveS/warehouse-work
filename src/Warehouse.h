@@ -17,6 +17,15 @@
 class Warehouse
 {
 public:
+
+    const std::string &getName() const;
+
+    void setName(const std::string &name);
+
+    const std::vector<Product> &getProducts() const;
+
+    void setProducts(const std::vector<Product> &products);
+
 private:
     std::string name;
     std::vector<Product> products;
