@@ -11,6 +11,7 @@
 #include "Invoice.h"
 #include "Warehouse.h"
 
+class Warehouse;
 class Client {
 public:
     const std::string &getName() const;
@@ -25,7 +26,7 @@ public:
     void setNumOfReceivedProducts(int numOfReceivedProducts);
     int getNumOfRequest() const;
     void setNumOfRequest(int numOfRequest);
-    void sendRequest(Warehouse warehouse, Request request);
+    void sendRequest(const Warehouse& warehouse,const Request& request);
     void payInvoice(Invoice invoice);
 
 private:

@@ -1,6 +1,9 @@
 #include <iostream>
 #include <cstdlib>
+
 #include "NotNumberException.h"
+#include "Product.h"
+#include "Client.h"
 
 using namespace std;
 
@@ -16,9 +19,9 @@ int main()
                 "\n3)Quit" << endl;
         try {
             cin >> buffChecker;
-            string::iterator it;
-            for (it = buffChecker.begin(); it < buffChecker.end(); ++it)
-                if (*it < '0' || *it > '9')
+
+            for (auto item : buffChecker)
+                if (item < '0' || item > '9')
                     throw NotNumberException();
             checker = atoi(buffChecker.c_str());
         }
@@ -41,7 +44,7 @@ int main()
             }
             case 2:
             {
-                //main actions
+                break;
             }
             case 3:
                 return 0;

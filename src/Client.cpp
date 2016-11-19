@@ -51,7 +51,7 @@ int Client::getNumOfRequest() const {
 void Client::setNumOfRequest(int numOfRequest) {
     Client::numOfRequest = numOfRequest;
 }
-void Client::sendRequest(Warehouse warehouse, Request request) {
+void Client::sendRequest(const Warehouse& warehouse, const Request& request) {
 
 }
 void Client::payInvoice(Invoice invoice) {
