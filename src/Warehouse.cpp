@@ -1,7 +1,3 @@
-//
-// Created by User on 19.11.2016.
-//
-
 #include "Warehouse.h"
 
 const std::string &Warehouse::getName() const {
