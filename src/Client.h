@@ -5,9 +5,36 @@
 #ifndef WAREHOUSE_WORK_CLIENT_H
 #define WAREHOUSE_WORK_CLIENT_H
 
+#include <iostream>
+#include <vector>
+#include "Product.h"
+#include "Invoice.h"
+#include "Warehouse.h"
 
 class Client {
+public:
+    const std::string &getName() const;
+    void setName(const std::string &name);
+    const std::vector<Product> &getProducts() const;
+    void setProducts(const std::vector<Product> &products);
+    const std::vector<Invoice> &getInvoices() const;
+    void setInvoices(const std::vector<Invoice> &invoices);
+    int getNumOfUnpaidInvoices() const;
+    void setNumOfUnpaidInvoices(int numOfUnpaidInvoices);
+    int getNumOfReceivedProducts() const;
+    void setNumOfReceivedProducts(int numOfReceivedProducts);
+    int getNumOfRequest() const;
+    void setNumOfRequest(int numOfRequest);
+    void sendRequest(Warehouse warehouse, Request request);
+    void payInvoice(Invoice invoice);
 
+private:
+    std::string name;
+    std::vector<Product> products;
+    std::vector<Invoice> invoices;
+    int numOfUnpaidInvoices;
+    int numOfReceivedProducts;
+    int numOfRequest;
 };
 
 
