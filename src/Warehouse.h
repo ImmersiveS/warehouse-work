@@ -20,7 +20,7 @@ public:
     class Accounting
     {
     public:
-        void sendRequest(const Supplier& supplier, const Request& request);
+        void sendRequest(Supplier& supplier, Request&& request);
         void payInvoice(const Invoice& invoice);
         void sendInvoice(const Client& client, const Invoice& invoice);
         void sendProducts(const Client& client, std::vector<Product> proucts);
@@ -28,14 +28,14 @@ public:
         std::vector<Invoice> invoices;
         std::vector<Request> requests;
         std::vector<Contract> contracts;
-    };
+    } accounting;
     Warehouse(const std::string &name, const std::vector<Product> &products);
 
     Warehouse(const std::string &name);
 
     Warehouse();
 
-    Accounting accounting;
+    //Accounting *accounting;
 
     const std::string &getName() const;
 

@@ -26,8 +26,8 @@ Warehouse::Warehouse() { this->name = "unnamed"; }
 
 Warehouse::Warehouse(const std::string &name) : name(name) { this->name = name; }
 
-void Warehouse::Accounting::sendRequest(const Supplier& supplier, const Request& request) {
-
+void Warehouse::Accounting::sendRequest(Supplier& supplier, Request&& request) {
+        supplier.getRequests().push_back(request);
 }
 void Warehouse::Accounting::payInvoice(const Invoice& invoice) {
 
