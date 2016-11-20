@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <memory>
 
 #include "NotNumberException.h"
 #include "Product.h"
@@ -44,6 +45,13 @@ int main()
             }
             case 2:
             {
+                unique_ptr<Supplier> sprite(new Supplier("Sprite", {{"Sprite", 7, 20}}));
+                unique_ptr<Supplier> ferrero(new Supplier("Ferrero", {{"Nutella", 20, 15}}));
+                shared_ptr<Client> ivan(new Client("Ivan"));
+                shared_ptr<Client> irina(new Client("Irina"));
+                unique_ptr<Warehouse> warehouse(new Warehouse("Petrovskiy"));
+                warehouse->accounting.sendRequest(*sprite, Request({{"Sprite", 7, 1}}));
+
                 break;
             }
             case 3:
