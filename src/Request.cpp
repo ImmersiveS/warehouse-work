@@ -4,7 +4,7 @@
 
 #include "Request.h"
 
-const std::vector<Product> &Request::getProducts() const {
+std::vector<Product> &Request::getProducts() {
     return products;
 }
 
@@ -12,10 +12,4 @@ void Request::setProducts(const std::vector<Product> &products) {
     Request::products = products;
 }
 
-bool Request::isCompliteness() const {
-    return compliteness;
-}
-
-void Request::setCompliteness(bool compliteness) {
-    Request::compliteness = compliteness;
-}
+Request::Request(const std::vector<Product> &products) : products(products) {}

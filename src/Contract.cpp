@@ -43,3 +43,11 @@ int Contract::getCost() const {
 void Contract::setCost(int cost) {
     Contract::cost = cost;
 }
+
+Contract::Contract(const std::vector<Product> &products, Supplier *supplier, Warehouse *warehouse, int cost) :
+        products(products), supplier(supplier), warehouse(warehouse), cost(cost) {}
+
+Contract::Contract(const std::vector<Product> &products, Warehouse *warehouse, Client *client, int cost) :
+        products(products), warehouse(warehouse), client(client), cost(cost) {}
+
+Contract::Contract() {}

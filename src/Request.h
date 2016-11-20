@@ -9,20 +9,15 @@
 #include "Product.h"
 
 class Request {
-private:
 public:
-    const std::vector<Product> &getProducts() const;
+    Request(const std::vector<Product> &products);
+
+    std::vector<Product> &getProducts();
 
     void setProducts(const std::vector<Product> &products);
 
-    bool isCompliteness() const;
-
-    void setCompliteness(bool compliteness);
-
 private:
     std::vector<Product> products;
-    bool compliteness;
-
 };
 
 

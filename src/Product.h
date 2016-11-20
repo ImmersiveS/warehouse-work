@@ -10,7 +10,7 @@
 
 class Product {
 public:
-    Product(const std::string &name, float price);
+    Product(const std::string &name, float price, int amount);
 
     Product();
 
@@ -26,10 +26,15 @@ public:
 
     void setDateOfReceiving();
 
+    int getAmount() const;
+
+    void setAmount(int amount);
+
 private:
     std::string name;
     float price;
     std::string dateOfReceiving;
+    int amount;
 };
 
 

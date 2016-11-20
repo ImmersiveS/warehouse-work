@@ -15,26 +15,24 @@ class Supplier {
 public:
     Supplier(const std::string &name, const std::vector<Product> &products);
 
-    Supplier();
-
     const std::string &getName() const;
 
     void setName(const std::string &name);
 
-    const std::vector<Product> &getProducts() const;
+     std::vector<Product> &getProducts() ;
 
     void setProducts(const std::vector<Product> &products);
 
-    const std::vector<Product> &getRequests() const;
+     std::vector<Request> &getRequests();
 
-    void setRequests(const std::vector<Product> &requests);
+    void setRequests(const std::vector<Request> &requests);
 
     void sendProducts(const Warehouse& warehouse, std::vector<Product> proucts);
 
 private:
     std::string name;
     std::vector<Product> products;
-    std::vector<Product> requests;
+    std::vector<Request> requests;
 };
 
 

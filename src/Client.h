@@ -14,6 +14,10 @@
 class Warehouse;
 class Client {
 public:
+    Client();
+
+    Client(const std::string &name);
+
     const std::string &getName() const;
     void setName(const std::string &name);
     const std::vector<Product> &getProducts() const;
@@ -21,13 +25,12 @@ public:
     const std::vector<Invoice> &getInvoices() const;
     void setInvoices(const std::vector<Invoice> &invoices);
     int getNumOfUnpaidInvoices() const;
-    void setNumOfUnpaidInvoices(int numOfUnpaidInvoices);
+    void countNumOfUnpaidInvoices();
     int getNumOfReceivedProducts() const;
-    void setNumOfReceivedProducts(int numOfReceivedProducts);
+    void countNumOfReceivedProducts();
     int getNumOfRequest() const;
-    void setNumOfRequest(int numOfRequest);
     void sendRequest(const Warehouse& warehouse,const Request& request);
-    void payInvoice(Invoice invoice);
+    void payInvoice(const Invoice& invoice);
 
 private:
     std::string name;

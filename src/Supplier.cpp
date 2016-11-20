@@ -12,7 +12,7 @@ void Supplier::setName(const std::string &name) {
     Supplier::name = name;
 }
 
-const std::vector<Product> &Supplier::getProducts() const {
+ std::vector<Product> &Supplier::getProducts() {
     return products;
 }
 
@@ -20,11 +20,11 @@ void Supplier::setProducts(const std::vector<Product> &products) {
     Supplier::products = products;
 }
 
-const std::vector<Product> &Supplier::getRequests() const {
+std::vector<Request> &Supplier::getRequests() {
     return requests;
 }
 
-void Supplier::setRequests(const std::vector<Product> &requests) {
+void Supplier::setRequests(const std::vector<Request> &requests) {
     Supplier::requests = requests;
 }
 
@@ -34,4 +34,3 @@ void Supplier::sendProducts(const Warehouse &warehouse, std::vector<Product> pro
 
 Supplier::Supplier(const std::string &name, const std::vector<Product> &products) : name(name), products(products) {}
 
-Supplier::Supplier() : name("undefined") {}

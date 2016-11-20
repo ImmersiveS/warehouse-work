@@ -30,7 +30,15 @@ void Product::setDateOfReceiving() {
     Product::dateOfReceiving = asctime(localtime(&dateOfReceiving));
 }
 
-Product::Product(const std::string &name, float price)
-        : name(name), price(price), dateOfReceiving("undefined") {}
+Product::Product(const std::string &name, float price, int amount)
+        : name(name), price(price), amount(amount), dateOfReceiving("undefined") {}
 
-Product::Product() : name(0), price(0), dateOfReceiving("undefined") {}
+Product::Product() : name(0), price(0), amount(0), dateOfReceiving("undefined") {}
+
+int Product::getAmount() const {
+    return amount;
+}
+
+void Product::setAmount(int amount) {
+    Product::amount = amount;
+}

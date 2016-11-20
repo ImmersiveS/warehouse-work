@@ -16,6 +16,12 @@ class Client;
 class Supplier;
 class Contract {
 public:
+    Contract(const std::vector<Product> &products, Supplier *supplier, Warehouse *warehouse, int cost);
+
+    Contract(const std::vector<Product> &products, Warehouse *warehouse, Client *client, int cost);
+
+    Contract();
+
     const std::vector<Product> &getProducts() const;
 
     void setProducts(const std::vector<Product> &products);
