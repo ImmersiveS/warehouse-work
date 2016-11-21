@@ -20,7 +20,7 @@ void Client::setProducts(const std::vector<Product> &products) {
     Client::products = products;
 }
 
-const std::vector<Invoice> &Client::getInvoices() const {
+std::vector<Invoice> &Client::getInvoices() {
     return invoices;
 }
 
@@ -52,10 +52,13 @@ int Client::getNumOfRequest() const {
     return numOfRequest;
 }
 
-void Client::sendRequest(const Warehouse& warehouse, const Request& request) {
+void Client::sendRequest(Warehouse& warehouse, Request&& request) {
     numOfRequest++;
+    warehouse.accounting.getRequests().push_back(request);
+    std::shared_ptr<Invoice> invoice(new Invoice(request.getProducts()));
+    warehouse.accounting.sendInvoice(*this, *invoice);
 }
-void Client::payInvoice(const Invoice& invoice) {
+void Client::payInvoice(Invoice& invoice) {
 
 }
 

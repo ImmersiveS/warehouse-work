@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "Invoice.h"
 #include "Request.h"
 #include "Contract.h"
@@ -20,11 +21,32 @@ public:
     class Accounting
     {
     public:
+        Accounting(Warehouse &warehouse);
+
+        Warehouse &getWarehouse();
+
+        std::vector<Request> &getRequests();
+
+        void setRequests(const std::vector<Request> &requests);
+
+        std::vector<Contract> &getContracts();
+
+        void setContracts(const std::vector<Contract> &contracts);
+
         void sendRequest(Supplier& supplier, Request&& request);
-        void payInvoice(const Invoice& invoice);
-        void sendInvoice(const Client& client, const Invoice& invoice);
-        void sendProducts(const Client& client, std::vector<Product> proucts);
+
+        void payInvoice(Invoice& invoice);
+
+        void sendInvoice( Client& client, Invoice& invoice);
+
+        void sendProducts(Client& client, std::vector<Product> proucts);
+
+        std::vector<Invoice> &getInvoices();
+
+        void setInvoices(const std::vector<Invoice> &invoices);
+
     private:
+        Warehouse& warehouse;
         std::vector<Invoice> invoices;
         std::vector<Request> requests;
         std::vector<Contract> contracts;

@@ -22,15 +22,15 @@ public:
     void setName(const std::string &name);
     const std::vector<Product> &getProducts() const;
     void setProducts(const std::vector<Product> &products);
-    const std::vector<Invoice> &getInvoices() const;
+     std::vector<Invoice> &getInvoices();
     void setInvoices(const std::vector<Invoice> &invoices);
     int getNumOfUnpaidInvoices() const;
     void countNumOfUnpaidInvoices();
     int getNumOfReceivedProducts() const;
     void countNumOfReceivedProducts();
     int getNumOfRequest() const;
-    void sendRequest(const Warehouse& warehouse,const Request& request);
-    void payInvoice(const Invoice& invoice);
+    void sendRequest(Warehouse& warehouse, Request&& request);
+    void payInvoice(Invoice& invoice);
 
 private:
     std::string name;
