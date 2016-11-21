@@ -34,3 +34,7 @@ void Supplier::sendProducts(const Warehouse &warehouse, std::vector<Product> pro
 
 Supplier::Supplier(const std::string &name, const std::vector<Product> &products) : name(name), products(products) {}
 
+void Supplier::sendInvoice(Warehouse& warehouse, Invoice& invoice) {
+    warehouse.accounting.getInvoices().push_back(invoice);
+}
+

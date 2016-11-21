@@ -29,6 +29,8 @@ public:
 
     void sendProducts(const Warehouse& warehouse, std::vector<Product> proucts);
 
+    void sendInvoice(Warehouse& warehouse, Invoice& invoice);
+
 private:
     std::string name;
     std::vector<Product> products;
