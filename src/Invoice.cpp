@@ -49,3 +49,11 @@ Invoice::Invoice(std::vector<Product> &products, Supplier& supplier) : products(
     for (auto item : products)
         cost += item.getPrice() * item.getAmount();
 }
+
+Warehouse *Invoice::getWarehouse() const {
+    return warehouse;
+}
+
+Supplier *Invoice::getSupplier() const {
+    return supplier;
+}

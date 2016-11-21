@@ -33,6 +33,10 @@ public:
 
     void setDateOfPaying(const std::string &dateOfPaying);
 
+    Warehouse *getWarehouse() const;
+
+    Supplier *getSupplier() const;
+
 private:
     std::vector<Product> products;
     int cost;
