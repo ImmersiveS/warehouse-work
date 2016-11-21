@@ -49,8 +49,9 @@ int main()
                 unique_ptr<Supplier> ferrero(new Supplier("Ferrero", {{"Nutella", 20, 15}}));
                 shared_ptr<Client> ivan(new Client("Ivan"));
                 shared_ptr<Client> irina(new Client("Irina"));
-                unique_ptr<Warehouse> warehouse(new Warehouse("Petrovskiy"));
-                warehouse->accounting.sendRequest(*sprite, Request({{"Sprite", 7, 1}}));
+                unique_ptr<Warehouse> warehouse(new Warehouse("Petrovskiy", {{"Sprite", 7, 10}}));
+                ivan->sendRequest(*warehouse, Request({{"Sprite", 7, 2}}));
+                cout << ivan->getInvoices().back().getCost() << endl;
 
                 break;
             }
