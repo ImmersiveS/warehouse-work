@@ -36,9 +36,9 @@ void Invoice::setDateOfPaying(const std::string &dateOfPaying) {
     Invoice::dateOfPaying = dateOfPaying;
 }
 
-Invoice::Invoice(const std::vector<Product> &products) : products(products), isPaid(false), dateOfPaying("non-existent")
+Invoice::Invoice(std::vector<Product> &products) : products(products), isPaid(false), dateOfPaying("non-existent")
 {
     cost = 0;
     for (auto item : products)
-        cost += item.getPrice();
+        cost += item.getPrice() * item.getAmount();
 }

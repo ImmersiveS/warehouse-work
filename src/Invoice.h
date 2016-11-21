@@ -10,7 +10,7 @@
 
 class Invoice {
 public:
-    Invoice(const std::vector<Product> &products);
+    Invoice(std::vector<Product> &products);
 
     const std::vector<Product> &getProducts() const;
 
