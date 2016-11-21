@@ -12,6 +12,7 @@
 #include "Warehouse.h"
 
 class Warehouse;
+class Invoice;
 class Client {
 public:
     Client();

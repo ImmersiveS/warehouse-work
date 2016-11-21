@@ -20,12 +20,12 @@ void Invoice::setCost(int cost) {
     Invoice::cost = cost;
 }
 
-bool Invoice::isIsPaid() const {
-    return isPaid;
+bool Invoice::isPaid() {
+    return paid;
 }
 
-void Invoice::setIsPaid(bool isPaid) {
-    Invoice::isPaid = isPaid;
+void Invoice::setPaid(bool isPaid) {
+    Invoice::paid = isPaid;
 }
 
 const std::string &Invoice::getDateOfPaying() const {
@@ -36,7 +36,14 @@ void Invoice::setDateOfPaying(const std::string &dateOfPaying) {
     Invoice::dateOfPaying = dateOfPaying;
 }
 
-Invoice::Invoice(std::vector<Product> &products) : products(products), isPaid(false), dateOfPaying("non-existent")
+Invoice::Invoice(std::vector<Product> &products, Warehouse& warehouse) : products(products), paid(false), dateOfPaying("non-existent"), supplier(nullptr)
+{
+    cost = 0;
+    for (auto item : products)
+        cost += item.getPrice() * item.getAmount();
+}
+
+Invoice::Invoice(std::vector<Product> &products, Supplier& supplier) : products(products), paid(false), dateOfPaying("non-existent"), warehouse(nullptr)
 {
     cost = 0;
     for (auto item : products)

@@ -7,10 +7,15 @@
 #include <iostream>
 #include <vector>
 #include "Product.h"
+#include "Supplier.h"
 
+class Warehouse;
+class Supplier;
 class Invoice {
 public:
-    Invoice(std::vector<Product> &products);
+    Invoice(std::vector<Product> &products, Warehouse& warehouse);
+
+    Invoice(std::vector<Product> &products, Supplier& supplier);
 
     const std::vector<Product> &getProducts() const;
 
@@ -20,9 +25,9 @@ public:
 
     void setCost(int cost);
 
-    bool isIsPaid() const;
+    bool isPaid();
 
-    void setIsPaid(bool isPaid);
+    void setPaid(bool isPaid);
 
     const std::string &getDateOfPaying() const;
 
@@ -31,8 +36,10 @@ public:
 private:
     std::vector<Product> products;
     int cost;
-    bool isPaid;
+    bool paid;
     std::string dateOfPaying;
+    Warehouse *warehouse;
+    Supplier *supplier;
 };
 
 

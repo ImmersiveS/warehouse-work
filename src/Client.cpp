@@ -35,7 +35,7 @@ int Client::getNumOfUnpaidInvoices() const {
 void Client::countNumOfUnpaidInvoices() {
     int unpaidInvoices = 0;
     for (auto &item : invoices)
-        if (!item.isIsPaid())
+        if (!item.isPaid())
             unpaidInvoices++;
     Client::numOfUnpaidInvoices = unpaidInvoices;
 }
@@ -55,10 +55,11 @@ int Client::getNumOfRequest() const {
 void Client::sendRequest(Warehouse& warehouse, Request&& request) {
     numOfRequest++;
     warehouse.accounting.getRequests().push_back(request);
-    std::shared_ptr<Invoice> invoice(new Invoice(request.getProducts()));
+    std::shared_ptr<Invoice> invoice(new Invoice(request.getProducts(), warehouse));
     warehouse.accounting.sendInvoice(*this, *invoice);
 }
 void Client::payInvoice(Invoice& invoice) {
+    invoice.setPaid(true);
 
 }
 

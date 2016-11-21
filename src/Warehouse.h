@@ -15,6 +15,7 @@
 class Supplier;
 class Client;
 class Contract;
+class Invoice;
 class Warehouse
 {
 public:

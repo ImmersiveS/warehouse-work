@@ -28,7 +28,7 @@ Warehouse::Warehouse(const std::string &name) : accounting(*this), name(name) { 
 
 void Warehouse::Accounting::sendRequest(Supplier& supplier, Request&& request) {
         supplier.getRequests().push_back(request);
-        std::shared_ptr<Invoice> invoice(new Invoice(request.getProducts()));
+        std::shared_ptr<Invoice> invoice(new Invoice(request.getProducts(), supplier));
         supplier.sendInvoice(this->getWarehouse(), *invoice);
 }
 void Warehouse::Accounting::payInvoice(Invoice& invoice) {

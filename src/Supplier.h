@@ -11,6 +11,8 @@
 #include "Warehouse.h"
 
 class Warehouse;
+class Request;
+class Invoice;
 class Supplier {
 public:
     Supplier(const std::string &name, const std::vector<Product> &products);
