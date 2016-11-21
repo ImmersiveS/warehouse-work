@@ -12,7 +12,7 @@ void Client::setName(const std::string &name) {
     Client::name = name;
 }
 
-const std::vector<Product> &Client::getProducts() const {
+std::vector<Product> &Client::getProducts() {
     return products;
 }
 
@@ -60,7 +60,7 @@ void Client::sendRequest(Warehouse& warehouse, Request&& request) {
 }
 void Client::payInvoice(Invoice& invoice) {
     invoice.setPaid(true);
-
+    invoice.getWarehouse()->accounting.sendProducts(*this, invoice.getProducts());
 }
 
 Client::Client(const std::string &name) : name(name), numOfRequest(0), numOfReceivedProducts(0), numOfUnpaidInvoices(0) {}

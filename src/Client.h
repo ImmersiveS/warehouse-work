@@ -21,7 +21,7 @@ public:
 
     const std::string &getName() const;
     void setName(const std::string &name);
-    const std::vector<Product> &getProducts() const;
+    std::vector<Product> &getProducts();
     void setProducts(const std::vector<Product> &products);
      std::vector<Invoice> &getInvoices();
     void setInvoices(const std::vector<Invoice> &invoices);

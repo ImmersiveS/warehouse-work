@@ -24,7 +24,13 @@ std::string Product::getDateOfReceiving() const {
     return dateOfReceiving;
 }
 
-void Product::setDateOfReceiving() {
+void Product::setDateOfReceivingForClient() {
+    std::chrono::system_clock::time_point date  = std::chrono::system_clock::now();
+    time_t dateOfReceiving = std::chrono::system_clock::to_time_t(date);
+    Product::dateOfReceiving = asctime(localtime(&dateOfReceiving));
+}
+
+void Product::setDateOfReceivingForWarehouse() {
     std::chrono::system_clock::time_point dateOfPaying  = std::chrono::system_clock::now();
     time_t dateOfReceiving = std::chrono::system_clock::to_time_t(dateOfPaying + std::chrono::hours(72));
     Product::dateOfReceiving = asctime(localtime(&dateOfReceiving));

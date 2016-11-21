@@ -24,7 +24,9 @@ public:
 
     std::string getDateOfReceiving() const;
 
-    void setDateOfReceiving();
+    void setDateOfReceivingForClient();
+
+    void setDateOfReceivingForWarehouse();
 
     int getAmount() const;
 

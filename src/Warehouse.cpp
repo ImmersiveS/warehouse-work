@@ -8,7 +8,7 @@ void Warehouse::setName(const std::string &name) {
     Warehouse::name = name;
 }
 
-const std::vector<Product> &Warehouse::getProducts() const {
+std::vector<Product> &Warehouse::getProducts() {
     return products;
 }
 
@@ -31,13 +31,23 @@ void Warehouse::Accounting::sendRequest(Supplier& supplier, Request&& request) {
         std::shared_ptr<Invoice> invoice(new Invoice(request.getProducts(), supplier));
         supplier.sendInvoice(this->getWarehouse(), *invoice);
 }
-void Warehouse::Accounting::payInvoice(Invoice& invoice) {
 
+void Warehouse::Accounting::payInvoice(Invoice& invoice) {
+    invoice.setPaid(true);
+    invoice.getSupplier()->sendProducts(this->getWarehouse(), invoice.getProducts());
 }
+
 void Warehouse::Accounting::sendInvoice( Client& client,  Invoice& invoice) {
     client.getInvoices().push_back(invoice);
 }
+
 void Warehouse::Accounting::sendProducts(Client &client, std::vector<Product> proucts) {
+//    std::transform(proucts.begin(), proucts.end(), proucts.begin(),
+//                   [](Product& product){ return product.setDateOfReceivingForClient();});
+    for (int i = 0; i < proucts.size(); ++i) {
+        proucts[i].setDateOfReceivingForClient();
+        client.getProducts().push_back(proucts[i]);
+    }
 
 }
 

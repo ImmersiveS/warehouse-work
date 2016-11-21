@@ -28,8 +28,11 @@ void Supplier::setRequests(const std::vector<Request> &requests) {
     Supplier::requests = requests;
 }
 
-void Supplier::sendProducts(const Warehouse &warehouse, std::vector<Product> proucts) {
-
+void Supplier::sendProducts(Warehouse &warehouse, std::vector<Product> proucts) {
+    for (int i = 0; i < proucts.size(); ++i) {
+        proucts[i].setDateOfReceivingForWarehouse();
+        warehouse.getProducts().push_back(proucts[i]);
+    }
 }
 
 Supplier::Supplier(const std::string &name, const std::vector<Product> &products) : name(name), products(products) {}

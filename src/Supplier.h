@@ -29,7 +29,7 @@ public:
 
     void setRequests(const std::vector<Request> &requests);
 
-    void sendProducts(const Warehouse& warehouse, std::vector<Product> proucts);
+    void sendProducts(Warehouse& warehouse, std::vector<Product> proucts);
 
     void sendInvoice(Warehouse& warehouse, Invoice& invoice);
 

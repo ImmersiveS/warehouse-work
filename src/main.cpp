@@ -49,10 +49,13 @@ int main()
                 unique_ptr<Supplier> ferrero(new Supplier("Ferrero", {{"Nutella", 20, 15}}));
                 shared_ptr<Client> ivan(new Client("Ivan"));
                 shared_ptr<Client> irina(new Client("Irina"));
-                unique_ptr<Warehouse> warehouse(new Warehouse("Petrovskiy", {{"Sprite", 7, 10}}));
-                ivan->sendRequest(*warehouse, Request({{"Sprite", 7, 2}}));
-                cout << ivan->getInvoices().back().getCost() << endl;
-
+                unique_ptr<Warehouse> warehouse(new Warehouse("Petrovskiy", {{"Sprite", 7, 10}, {"Bread", 5, 15}}));
+                ivan->sendRequest(*warehouse, Request({{"Sprite", 7, 2}, {"Bread", 5, 3}}));
+                ivan->payInvoice(ivan->getInvoices().back());
+                warehouse->accounting.sendRequest(*ferrero, Request({{"Nutella", 20, 2}}));
+                warehouse->accounting.payInvoice(warehouse->accounting.getInvoices().back());
+                cout << ivan->getProducts().back().getName() << " " << ivan->getProducts().back().getDateOfReceiving() << endl;
+                cout << warehouse->getProducts().back().getName() << " " << warehouse->getProducts().back().getDateOfReceiving() << endl;
                 break;
             }
             case 3:

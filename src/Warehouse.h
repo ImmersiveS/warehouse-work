@@ -5,6 +5,7 @@
 #ifndef WAREHOUSE_WORK_WEARHOUSE_H
 #define WAREHOUSE_WORK_WEARHOUSE_H
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -64,7 +65,7 @@ public:
 
     void setName(const std::string &name);
 
-    const std::vector<Product> &getProducts() const;
+    std::vector<Product> &getProducts();
 
     void setProducts(const std::vector<Product> &products);
 private:
