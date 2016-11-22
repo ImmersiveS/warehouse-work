@@ -16,9 +16,7 @@ class Client;
 class Supplier;
 class Contract {
 public:
-    Contract(const std::vector<Product> &products, Supplier *supplier, Warehouse *warehouse, int cost);
-
-    Contract(const std::vector<Product> &products, Warehouse *warehouse, Client *client, int cost);
+    Contract(std::vector<Product> &products, Supplier &supplier, Warehouse &warehouse, int cost);
 
     Contract();
 
@@ -34,10 +32,6 @@ public:
 
     void setWarehouse(Warehouse *warehouse);
 
-    Client *getClient() const;
-
-    void setClient(Client *client);
-
     int getCost() const;
 
     void setCost(int cost);
@@ -46,7 +40,6 @@ private:
     std::vector<Product> products;
     Supplier* supplier;
     Warehouse* warehouse;
-    Client* client;
     int cost;
 };
 

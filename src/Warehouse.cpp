@@ -41,14 +41,13 @@ void Warehouse::Accounting::sendInvoice( Client& client,  Invoice& invoice) {
     client.getInvoices().push_back(invoice);
 }
 
-void Warehouse::Accounting::sendProducts(Client &client, std::vector<Product> proucts) {
+void Warehouse::Accounting::sendProducts(Client &client, std::vector<Product> products) {
 //    std::transform(proucts.begin(), proucts.end(), proucts.begin(),
 //                   [](Product& product){ return product.setDateOfReceivingForClient();});
-    for (int i = 0; i < proucts.size(); ++i) {
-        proucts[i].setDateOfReceivingForClient();
-        client.getProducts().push_back(proucts[i]);
+    for (int i = 0; i < products.size(); ++i) {
+        products[i].setDateOfReceivingForClient();
+        client.getProducts().push_back(products[i]);
     }
-
 }
 
 std::vector<Invoice> &Warehouse::Accounting::getInvoices() {
@@ -79,4 +78,13 @@ void Warehouse::Accounting::setRequests(const std::vector<Request> &requests) {
 
 void Warehouse::Accounting::setContracts(const std::vector<Contract> &contracts) {
     Accounting::contracts = contracts;
+}
+
+void Warehouse::Accounting::makeContractWithSupplier(Warehouse &warehouse, std::vector<Product> products,
+                                                      Supplier &supplier) {
+    int cost = 0;
+    for (auto item : products)
+        cost += item.getPrice() * item.getAmount();
+    std::shared_ptr<Contract> contract(new Contract(products, supplier, warehouse, cost));
+    contracts.push_back(*contract);
 }

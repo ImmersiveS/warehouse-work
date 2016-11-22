@@ -28,11 +28,12 @@ void Supplier::setRequests(const std::vector<Request> &requests) {
     Supplier::requests = requests;
 }
 
-void Supplier::sendProducts(Warehouse &warehouse, std::vector<Product> proucts) {
-    for (int i = 0; i < proucts.size(); ++i) {
-        proucts[i].setDateOfReceivingForWarehouse();
-        warehouse.getProducts().push_back(proucts[i]);
+void Supplier::sendProducts(Warehouse &warehouse, std::vector<Product> products) {
+    for (int i = 0; i < products.size(); ++i) {
+        products[i].setDateOfReceivingForWarehouse();
+        warehouse.getProducts().push_back(products[i]);
     }
+    warehouse.accounting.makeContractWithSupplier(warehouse, products, *this);
 }
 
 Supplier::Supplier(const std::string &name, const std::vector<Product> &products) : name(name), products(products) {}

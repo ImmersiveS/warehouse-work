@@ -20,17 +20,29 @@ public:
     Client(const std::string &name);
 
     const std::string &getName() const;
+
     void setName(const std::string &name);
+
     std::vector<Product> &getProducts();
+
     void setProducts(const std::vector<Product> &products);
+
      std::vector<Invoice> &getInvoices();
+
     void setInvoices(const std::vector<Invoice> &invoices);
+
     int getNumOfUnpaidInvoices() const;
+
     void countNumOfUnpaidInvoices();
+
     int getNumOfReceivedProducts() const;
+
     void countNumOfReceivedProducts();
+
     int getNumOfRequest() const;
+
     void sendRequest(Warehouse& warehouse, Request&& request);
+
     void payInvoice(Invoice& invoice);
 
 private:

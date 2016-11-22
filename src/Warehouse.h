@@ -41,14 +41,16 @@ public:
 
         void sendInvoice( Client& client, Invoice& invoice);
 
-        void sendProducts(Client& client, std::vector<Product> proucts);
+        void sendProducts(Client& client, std::vector<Product> products);
 
         std::vector<Invoice> &getInvoices();
 
         void setInvoices(const std::vector<Invoice> &invoices);
 
+        void makeContractWithSupplier( Warehouse &warehouse, std::vector<Product> products, Supplier& supplier);
+
     private:
-        Warehouse& warehouse;
+        Warehouse &warehouse;
         std::vector<Invoice> invoices;
         std::vector<Request> requests;
         std::vector<Contract> contracts;

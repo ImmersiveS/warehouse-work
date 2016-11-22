@@ -28,14 +28,6 @@ void Contract::setWarehouse(Warehouse *warehouse) {
     Contract::warehouse = warehouse;
 }
 
-Client *Contract::getClient() const {
-    return client;
-}
-
-void Contract::setClient(Client *client) {
-    Contract::client = client;
-}
-
 int Contract::getCost() const {
     return cost;
 }
@@ -44,10 +36,7 @@ void Contract::setCost(int cost) {
     Contract::cost = cost;
 }
 
-Contract::Contract(const std::vector<Product> &products, Supplier *supplier, Warehouse *warehouse, int cost) :
-        products(products), supplier(supplier), warehouse(warehouse), cost(cost) {}
-
-Contract::Contract(const std::vector<Product> &products, Warehouse *warehouse, Client *client, int cost) :
-        products(products), warehouse(warehouse), client(client), cost(cost) {}
+Contract::Contract(std::vector<Product> &products, Supplier &supplier, Warehouse &warehouse, int cost) :
+        products(products), supplier(&supplier), warehouse(&warehouse), cost(cost) {}
 
 Contract::Contract() {}
