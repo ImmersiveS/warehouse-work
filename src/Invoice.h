@@ -17,7 +17,7 @@ public:
 
     Invoice(std::vector<Product> &products, Supplier& supplier);
 
-    const std::vector<Product> &getProducts() const;
+    std::vector<Product> &getProducts();
 
     void setProducts(const std::vector<Product> &products);
 
@@ -33,9 +33,9 @@ public:
 
     void setDateOfPaying(const std::string &dateOfPaying);
 
-    Warehouse *getWarehouse() const;
+    Warehouse *getWarehouse();
 
-    Supplier *getSupplier() const;
+    Supplier *getSupplier();
 
 private:
     std::vector<Product> products;

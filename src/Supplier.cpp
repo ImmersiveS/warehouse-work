@@ -28,7 +28,7 @@ void Supplier::setRequests(const std::vector<Request> &requests) {
     Supplier::requests = requests;
 }
 
-void Supplier::sendProducts(Warehouse &warehouse, std::vector<Product> products) {
+void Supplier::sendProducts(Warehouse &warehouse, std::vector<Product> &products) {
     for (int i = 0; i < products.size(); ++i) {
         products[i].setDateOfReceivingForWarehouse();
         warehouse.getProducts().push_back(products[i]);

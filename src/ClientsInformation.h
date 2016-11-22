@@ -10,6 +10,6 @@ template<class ...Clients>
 class ClientsInformation : public Clients...
 {
 public:
-    ClientsInformation(const Clients&&... clients) : Clients(clients)... {}
+    ClientsInformation(const Clients&... clients) : Clients(clients)... {}
 };
 #endif //WAREHOUSE_WORK_CLIENTSINFORMATION_H

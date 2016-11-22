@@ -48,6 +48,7 @@ void Warehouse::Accounting::sendProducts(Client &client, std::vector<Product> pr
         products[i].setDateOfReceivingForClient();
         client.getProducts().push_back(products[i]);
     }
+    client.countNumOfCompletedRequests();
 }
 
 std::vector<Invoice> &Warehouse::Accounting::getInvoices() {

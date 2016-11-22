@@ -40,12 +40,12 @@ void Client::countNumOfUnpaidInvoices() {
     Client::numOfUnpaidInvoices = unpaidInvoices;
 }
 
-int Client::getNumOfReceivedProducts() const {
-    return numOfReceivedProducts;
+int Client::getNumOfCompletedRequests() const {
+    return numOfCompletedRequests;
 }
 
-void Client::countNumOfReceivedProducts() {
-    Client::numOfReceivedProducts = Client::products.size();
+void Client::countNumOfCompletedRequests() {
+    Client::numOfCompletedRequests++;
 }
 
 int Client::getNumOfRequest() const {
@@ -63,6 +63,6 @@ void Client::payInvoice(Invoice& invoice) {
     invoice.getWarehouse()->accounting.sendProducts(*this, invoice.getProducts());
 }
 
-Client::Client(const std::string &name) : name(name), numOfRequest(0), numOfReceivedProducts(0), numOfUnpaidInvoices(0) {}
+Client::Client(const std::string &name) : name(name), numOfRequest(0), numOfCompletedRequests(0), numOfUnpaidInvoices(0) {}
 
-Client::Client() : name("undefined"), numOfRequest(0), numOfReceivedProducts(0), numOfUnpaidInvoices(0) {}
+Client::Client() : name("undefined"), numOfRequest(0), numOfCompletedRequests(0), numOfUnpaidInvoices(0) {}

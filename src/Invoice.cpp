@@ -4,7 +4,7 @@
 
 #include "Invoice.h"
 
-const std::vector<Product> &Invoice::getProducts() const {
+std::vector<Product> &Invoice::getProducts(){
     return products;
 }
 
@@ -50,10 +50,10 @@ Invoice::Invoice(std::vector<Product> &products, Supplier& supplier) : products(
         cost += item.getPrice() * item.getAmount();
 }
 
-Warehouse *Invoice::getWarehouse() const {
+Warehouse *Invoice::getWarehouse() {
     return warehouse;
 }
 
-Supplier *Invoice::getSupplier() const {
+Supplier *Invoice::getSupplier() {
     return supplier;
 }

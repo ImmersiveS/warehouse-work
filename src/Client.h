@@ -35,9 +35,9 @@ public:
 
     void countNumOfUnpaidInvoices();
 
-    int getNumOfReceivedProducts() const;
+    int getNumOfCompletedRequests() const;
 
-    void countNumOfReceivedProducts();
+    void countNumOfCompletedRequests();
 
     int getNumOfRequest() const;
 
@@ -50,7 +50,7 @@ private:
     std::vector<Product> products;
     std::vector<Invoice> invoices;
     int numOfUnpaidInvoices;
-    int numOfReceivedProducts;
+    int numOfCompletedRequests;
     int numOfRequest;
 };
 
