@@ -56,6 +56,7 @@ int main()
                 warehouse->accounting.payInvoice(warehouse->accounting.getInvoices().back());
                 cout << ivan->getProducts().back().getName() << " " << ivan->getProducts().back().getDateOfReceiving() << endl;
                 cout << warehouse->getProducts().back().getName() << " " << warehouse->getProducts().back().getDateOfReceiving() << endl;
+                cout << warehouse->accounting.getContracts().back().getWarehouse()->getName() << " " << warehouse->accounting.getContracts().back().getCost() << endl;
                 break;
             }
             case 3:
