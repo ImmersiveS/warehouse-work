@@ -41,12 +41,12 @@ int main()
             case 1:
             {
                 cout << "FN: Lobachev S.U.\nVariant: 8\nLevel: V\n"
-                        "Assignment: implement the class long arithmetic within its operations and exception handling" << endl;
+                        "Assignment: simulate work of warehouse with interruption with clients and suppliers" << endl;
                 break;
             }
             case 2:
             {
-                unique_ptr<Warehouse> warehouse (new Warehouse("Petrovskiy", {{"Sprite", 7, 10}, {"Bread", 5, 15}, {"Iphone 7", 2000, 100}}));
+                unique_ptr<Warehouse> warehouse(new Warehouse("Petrovskiy", {{"Sprite", 7, 10}, {"Bread", 5, 15}, {"Iphone 7", 2000, 100}}));
 
                 unique_ptr<Supplier> sprite(new Supplier("Sprite", {{"Sprite", 7, 20}}));
                 unique_ptr<Supplier> ferrero(new Supplier("Ferrero", {{"Nutella", 20, 15}}));
@@ -61,7 +61,7 @@ int main()
 
                 ivan->sendRequest(*warehouse, Request({{"Sprite", 7, 2}, {"Bread", 5, 3}}));
                 ivan->sendRequest(*warehouse, Request({{"Bread", 5, 4}}));
-                ivan->payInvoice(ivan->getInvoices().back());
+                ivan->payInvoice(*warehouse, ivan->getInvoices().back());
 
                 jane->sendRequest(*warehouse, Request({{"Iphone 7", 2000, 1}}));
 
@@ -69,7 +69,7 @@ int main()
                 bobDylan->sendRequest(*warehouse, Request({{"Sprite", 7, 2}}));
                 bobDylan->sendRequest(*warehouse, Request({{"Bread", 5, 2}}));
                 for (int i = 0; i < 3; ++i)
-                    bobDylan->payInvoice(bobDylan->getInvoices()[i]);
+                    bobDylan->payInvoice(*warehouse, bobDylan->getInvoices()[i]);
 
                 cout << ivan->getProducts().back().getName() << " " << ivan->getProducts().back().getDateOfReceiving() << endl;
                 cout << warehouse->getProducts().back().getName() << " " << warehouse->getProducts().back().getDateOfReceiving() << endl;
@@ -88,6 +88,9 @@ int main()
                     cout << "\nNumber of" << pClientsInformation[i]->getName() << "'s completed requests: "
                          << pClientsInformation[i]->getNumOfCompletedRequests();
                 }
+                for (int i = 0; i < 3; ++i)
+                    delete pClientsInformation[i];
+                delete[] pClientsInformation;
                 break;
             }
             case 3:

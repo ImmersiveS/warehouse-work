@@ -18,6 +18,8 @@ class Contract {
 public:
     Contract(std::vector<Product> &products, Supplier &supplier, Warehouse &warehouse, int cost);
 
+    Contract(std::vector<Product> &products, Client &client, Warehouse &warehouse, int cost);
+
     Contract();
 
     const std::vector<Product> &getProducts() const;
@@ -40,6 +42,7 @@ private:
     std::vector<Product> products;
     Supplier* supplier;
     Warehouse* warehouse;
+    Client* client;
     int cost;
 };
 

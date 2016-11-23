@@ -43,7 +43,7 @@ public:
 
     void sendRequest(Warehouse& warehouse, Request&& request);
 
-    void payInvoice(Invoice& invoice);
+    void payInvoice(Warehouse& warehouse, Invoice& invoice);
 
 private:
     std::string name;

@@ -39,4 +39,6 @@ void Contract::setCost(int cost) {
 Contract::Contract(std::vector<Product> &products, Supplier &supplier, Warehouse &warehouse, int cost) :
         products(products), supplier(&supplier), warehouse(&warehouse), cost(cost) {}
 
+Contract::Contract(std::vector<Product> &products, Client &client, Warehouse &warehouse, int cost) :
+        products(products), client(&client), warehouse(&warehouse), cost(cost) {}
 Contract::Contract() {}

@@ -49,6 +49,7 @@ void Warehouse::Accounting::sendProducts(Client &client, std::vector<Product> pr
         client.getProducts().push_back(products[i]);
     }
     client.countNumOfCompletedRequests();
+    this->makeContractWithClient(this->getWarehouse(), products, client);
 }
 
 std::vector<Invoice> &Warehouse::Accounting::getInvoices() {
@@ -87,5 +88,13 @@ void Warehouse::Accounting::makeContractWithSupplier(Warehouse &warehouse, std::
     for (auto item : products)
         cost += item.getPrice() * item.getAmount();
     std::shared_ptr<Contract> contract(new Contract(products, supplier, warehouse, cost));
+    contracts.push_back(*contract);
+}
+void Warehouse::Accounting::makeContractWithClient(Warehouse &warehouse, std::vector<Product> products,
+                                                     Client &client) {
+    int cost = 0;
+    for (auto item : products)
+        cost += item.getPrice() * item.getAmount();
+    std::shared_ptr<Contract> contract(new Contract(products, client, warehouse, cost));
     contracts.push_back(*contract);
 }

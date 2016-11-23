@@ -58,9 +58,9 @@ void Client::sendRequest(Warehouse& warehouse, Request&& request) {
     std::shared_ptr<Invoice> invoice(new Invoice(request.getProducts(), warehouse));
     warehouse.accounting.sendInvoice(*this, *invoice);
 }
-void Client::payInvoice(Invoice& invoice) {
+void Client::payInvoice(Warehouse& warehouse, Invoice& invoice) {
     invoice.setPaid(true);
-    invoice.getWarehouse()->accounting.sendProducts(*this, invoice.getProducts());
+    warehouse.accounting.sendProducts(*this, invoice.getProducts());
 }
 
 Client::Client(const std::string &name) : name(name), numOfRequest(0), numOfCompletedRequests(0), numOfUnpaidInvoices(0) {}

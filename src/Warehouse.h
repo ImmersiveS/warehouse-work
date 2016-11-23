@@ -48,6 +48,7 @@ public:
         void setInvoices(const std::vector<Invoice> &invoices);
 
         void makeContractWithSupplier( Warehouse &warehouse, std::vector<Product> products, Supplier& supplier);
+        void makeContractWithClient(Warehouse &warehouse, std::vector<Product> products, Client &client);
 
     private:
         Warehouse &warehouse;
