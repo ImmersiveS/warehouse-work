@@ -16,8 +16,8 @@ class Invoice;
 class Supplier {
 public:
     Supplier(const std::string &name, const std::vector<Product> &products);
-
-    const std::string &getName() const;
+    Supplier();
+    std::string &getName();
 
     void setName(const std::string &name);
 

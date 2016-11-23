@@ -50,7 +50,7 @@ int main()
 
                 unique_ptr<Supplier> sprite(new Supplier("Sprite", {{"Sprite", 7, 20}}));
                 unique_ptr<Supplier> ferrero(new Supplier("Ferrero", {{"Nutella", 20, 15}}));
-                unique_ptr<Supplier> apple (new Supplier("Apple", {{"Iphone 7", 2000, 3000}}));
+                shared_ptr<Supplier> apple (new Supplier("Apple", {{"Iphone 7", 2000, 3000}}));
 
                 shared_ptr<Client> ivan (new Client("Ivan"));
                 shared_ptr<Client> jane (new Client("Jane"));
@@ -71,9 +71,24 @@ int main()
                 for (int i = 0; i < 3; ++i)
                     bobDylan->payInvoice(*warehouse, bobDylan->getInvoices()[i]);
 
-                cout << ivan->getProducts().back().getName() << " " << ivan->getProducts().back().getDateOfReceiving() << endl;
-                cout << warehouse->getProducts().back().getName() << " " << warehouse->getProducts().back().getDateOfReceiving() << endl;
-                cout << warehouse->accounting.getContracts().back().getWarehouse()->getName() << " " << warehouse->accounting.getContracts().back().getCost() << endl;
+                for (auto &item: warehouse->accounting.getContracts())
+                {
+                    if (!&item)
+                        cout << "There are no operations done in the warehouse" << endl;
+                    else {
+                        if (item.getSupplier() != nullptr)
+                            cout << "Contract between " << item.getWarehouse()->getName() << " and "
+                                 << item.getSupplier()->getName() << endl;
+                        if (item.getClient() != nullptr)
+                            cout << "Contract between " << item.getWarehouse()->getName() << " and "
+                                 << item.getClient()->getName() << endl;
+                        for (auto &prod : item.getProducts())
+                            cout << "Products: name: " << prod.getName() << " price " << prod.getPrice() <<
+                                 " amount " << prod.getAmount() << " date of receiving " << prod.getDateOfReceiving();
+                        cout << "Full cost: " << item.getCost() << endl;
+                        cout << endl;
+                    }
+                }
 
                 ClientsInformation<Client>** pClientsInformation = new ClientsInformation<Client>*[3];
                     pClientsInformation[0] = new ClientsInformation<Client>(*ivan);

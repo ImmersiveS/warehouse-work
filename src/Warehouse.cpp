@@ -42,8 +42,6 @@ void Warehouse::Accounting::sendInvoice( Client& client,  Invoice& invoice) {
 }
 
 void Warehouse::Accounting::sendProducts(Client &client, std::vector<Product> products) {
-//    std::transform(proucts.begin(), proucts.end(), proucts.begin(),
-//                   [](Product& product){ return product.setDateOfReceivingForClient();});
     for (int i = 0; i < products.size(); ++i) {
         products[i].setDateOfReceivingForClient();
         client.getProducts().push_back(products[i]);

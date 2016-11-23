@@ -30,16 +30,21 @@ public:
 
     void setSupplier(Supplier *supplier);
 
-    Warehouse *getWarehouse() const;
+    Warehouse *getWarehouse();
 
     void setWarehouse(Warehouse *warehouse);
 
-    int getCost() const;
+    Client *getClient();
+
+    int getCost();
 
     void setCost(int cost);
 
 private:
     std::vector<Product> products;
+//    std::unique_ptr<Supplier> supplier;
+//    std::unique_ptr<Warehouse> warehouse;
+//    std::unique_ptr<Client> client;
     Supplier* supplier;
     Warehouse* warehouse;
     Client* client;

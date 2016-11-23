@@ -4,9 +4,10 @@
 
 #include "Supplier.h"
 
-const std::string &Supplier::getName() const {
+std::string &Supplier::getName() {
     return name;
 }
+Supplier::Supplier() {};
 
 void Supplier::setName(const std::string &name) {
     Supplier::name = name;
