@@ -1,7 +1,3 @@
-//
-// Created by User on 19.11.2016.
-//
-
 #ifndef WAREHOUSE_WORK_INVOCE_H
 #define WAREHOUSE_WORK_INVOCE_H
 #include <iostream>
@@ -21,29 +17,19 @@ public:
 
     void setProducts(const std::vector<Product> &products);
 
-    int getCost() const;
-
-    void setCost(int cost);
-
     bool isPaid();
 
     void setPaid(bool isPaid);
 
-    const std::string &getDateOfPaying() const;
-
-    void setDateOfPaying(const std::string &dateOfPaying);
-
-    Warehouse *getWarehouse();
-
-    Supplier *getSupplier();
+    std::shared_ptr<Supplier> getSupplier();
 
 private:
     std::vector<Product> products;
     int cost;
     bool paid;
     std::string dateOfPaying;
-    Warehouse *warehouse;
-    Supplier *supplier;
+    std::shared_ptr<Warehouse> warehouse;
+    std::shared_ptr<Supplier> supplier;
 };
 
 

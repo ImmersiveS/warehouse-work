@@ -1,7 +1,3 @@
-//
-// Created by User on 19.11.2016.
-//
-
 #include "Request.h"
 
 std::vector<Product> &Request::getProducts() {

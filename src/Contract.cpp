@@ -1,7 +1,3 @@
-//
-// Created by User on 19.11.2016.
-//
-
 #include "Contract.h"
 
 const std::vector<Product> &Contract::getProducts() const {
@@ -12,20 +8,12 @@ void Contract::setProducts(const std::vector<Product> &products) {
     Contract::products = products;
 }
 
-Supplier *Contract::getSupplier() const {
+std::shared_ptr<Supplier> Contract::getSupplier() const {
     return supplier;
 }
 
-void Contract::setSupplier(Supplier *supplier) {
-    Contract::supplier = supplier;
-}
-
-Warehouse *Contract::getWarehouse() {
+std::shared_ptr<Warehouse> Contract::getWarehouse() {
     return warehouse;
-}
-
-void Contract::setWarehouse(Warehouse *warehouse) {
-    Contract::warehouse = warehouse;
 }
 
 int Contract::getCost() {
@@ -38,15 +26,15 @@ void Contract::setCost(int cost) {
 
 Contract::Contract(std::vector<Product> &products, Supplier &supplier, Warehouse &warehouse, int cost) :
         products(products), cost(cost) {
-    this->supplier = &supplier;
-    this->warehouse = &warehouse;
+    this->supplier = std::make_shared<Supplier>(supplier);
+    this->warehouse = std::make_shared<Warehouse>(warehouse);
     this->client = nullptr;
 }
 
 Contract::Contract(std::vector<Product> &products, Client &client, Warehouse &warehouse, int cost) :
         products(products), cost(cost) {
-    this->client = &client;
-    this->warehouse = &warehouse;
+    this->client = std::make_shared<Client>(client);
+    this->warehouse = std::make_shared<Warehouse>(warehouse);
     this->supplier = nullptr;
 }
 Contract::Contract() {
@@ -55,6 +43,6 @@ Contract::Contract() {
     this->supplier = nullptr;
 }
 
-Client *Contract::getClient() {
+std::shared_ptr<Client> Contract::getClient() {
     return client;
 }

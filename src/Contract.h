@@ -1,11 +1,8 @@
-//
-// Created by User on 19.11.2016.
-//
-
 #ifndef WAREHOUSE_WORK_CONTRACT_H
 #define WAREHOUSE_WORK_CONTRACT_H
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "Product.h"
 #include "Supplier.h"
 #include "Client.h"
@@ -26,15 +23,11 @@ public:
 
     void setProducts(const std::vector<Product> &products);
 
-    Supplier *getSupplier() const;
+    std::shared_ptr<Supplier> getSupplier() const;
 
-    void setSupplier(Supplier *supplier);
+    std::shared_ptr<Warehouse> getWarehouse();
 
-    Warehouse *getWarehouse();
-
-    void setWarehouse(Warehouse *warehouse);
-
-    Client *getClient();
+    std::shared_ptr<Client> getClient();
 
     int getCost();
 
@@ -42,12 +35,9 @@ public:
 
 private:
     std::vector<Product> products;
-//    std::unique_ptr<Supplier> supplier;
-//    std::unique_ptr<Warehouse> warehouse;
-//    std::unique_ptr<Client> client;
-    Supplier* supplier;
-    Warehouse* warehouse;
-    Client* client;
+    std::shared_ptr<Warehouse> warehouse;
+    std::shared_ptr<Supplier> supplier;
+    std::shared_ptr<Client> client;
     int cost;
 };
 

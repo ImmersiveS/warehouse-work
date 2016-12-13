@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <memory>
+#include <tuple>
 
 #include "NotNumberException.h"
 #include "Product.h"
 #include "Client.h"
-#include "ClientsInformation.h"
 
 using namespace std;
 
@@ -46,15 +46,15 @@ int main()
             }
             case 2:
             {
-                unique_ptr<Warehouse> warehouse(new Warehouse("Petrovskiy", {{"Sprite", 7, 10}, {"Bread", 5, 15}, {"Iphone 7", 2000, 100}}));
+                unique_ptr<Warehouse> warehouse(new Warehouse("Petrovskiy", {{"Sprite", 7, 10}, {"Bread", 5, 15}, {"Iphone 7", 2000, 100}, {"Nobel Prize", 0, 10}}));
 
-                unique_ptr<Supplier> sprite(new Supplier("Sprite", {{"Sprite", 7, 20}}));
-                unique_ptr<Supplier> ferrero(new Supplier("Ferrero", {{"Nutella", 20, 15}}));
-                shared_ptr<Supplier> apple (new Supplier("Apple", {{"Iphone 7", 2000, 3000}}));
+                auto sprite = make_unique<Supplier>(Supplier("Sprite", {{"Sprite", 7, 20}}));
+                auto ferrero = make_unique<Supplier>(Supplier("Swedesh institute", {{"Nobel Prize", 0, 15}}));
+                auto apple = make_unique<Supplier>(Supplier("Apple", {{"Iphone 7", 2000, 3000}}));
 
-                shared_ptr<Client> ivan (new Client("Ivan"));
-                shared_ptr<Client> jane (new Client("Jane"));
-                shared_ptr<Client> bobDylan(new Client("Bob Dylan"));
+                auto ivan = make_shared<Client>(Client("Ivan"));
+                auto jane = make_shared<Client>(Client("Jane"));
+                auto bobDylan = make_shared<Client>(Client("Bob Dylan"));
 
                 warehouse->accounting.sendRequest(*apple, Request({{"Iphone 7", 2000, 100}}));
                 warehouse->accounting.payInvoice(warehouse->accounting.getInvoices().back());
@@ -67,7 +67,7 @@ int main()
 
                 bobDylan->sendRequest(*warehouse, Request({{"Iphone 7", 2000, 1}}));
                 bobDylan->sendRequest(*warehouse, Request({{"Sprite", 7, 2}}));
-                bobDylan->sendRequest(*warehouse, Request({{"Bread", 5, 2}}));
+                bobDylan->sendRequest(*warehouse, Request({{"Nobel Prize", 5, 2}}));
                 for (int i = 0; i < 3; ++i)
                     bobDylan->payInvoice(*warehouse, bobDylan->getInvoices()[i]);
 
@@ -90,22 +90,25 @@ int main()
                     }
                 }
 
-                ClientsInformation<Client>** pClientsInformation = new ClientsInformation<Client>*[3];
-                    pClientsInformation[0] = new ClientsInformation<Client>(*ivan);
-                    pClientsInformation[1] = new ClientsInformation<Client>(*jane);
-                    pClientsInformation[2] = new ClientsInformation<Client>(*bobDylan);
-                for (int i = 0; i < 3; ++i) {
-                    pClientsInformation[i]->countNumOfUnpaidInvoices();
-                    cout << "\nNumber of " << pClientsInformation[i]->getName() << "'s requests: "
-                         << pClientsInformation[i]->getNumOfRequest();
-                    cout << "\nNumber of" << pClientsInformation[i]->getName() << "'s unpaid requests: "
-                         << pClientsInformation[i]->getNumOfUnpaidInvoices();
-                    cout << "\nNumber of" << pClientsInformation[i]->getName() << "'s completed requests: "
-                         << pClientsInformation[i]->getNumOfCompletedRequests();
+                vector<shared_ptr<Client>> allClients = {ivan, jane, bobDylan};
+                auto clientsInfo = [&](int id)->tuple<string, int, int, int>
+                {
+                    allClients[id]->countNumOfUnpaidInvoices();
+                    return make_tuple(allClients[id]->getName(),
+                                      allClients[id]->getNumOfRequest(),
+                                      allClients[id]->getNumOfUnpaidInvoices(),
+                                      allClients[id]->getNumOfCompletedRequests());
+                };
+
+                for (int i = 0; i < allClients.size(); ++i) {
+                    auto client0 = clientsInfo(i);
+                    cout << "\nNumber of " << get<0>(client0) << "'s requests: "
+                         << get<1>(client0);
+                    cout << "\nNumber of" << get<0>(client0) << "'s unpaid requests: "
+                         << get<2>(client0);
+                    cout << "\nNumber of" << get<0>(client0) << "'s completed requests: "
+                         << get<3>(client0);
                 }
-                for (int i = 0; i < 3; ++i)
-                    delete pClientsInformation[i];
-                delete[] pClientsInformation;
                 break;
             }
             case 3:
